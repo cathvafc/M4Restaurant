@@ -90,24 +90,37 @@ namespace M4Restaurant
 
                     platoIntroducido = Console.ReadLine();
 
-                    if (MenuFull.TryGetValue(platoIntroducido, out precioPlato))
+                    try
                     {
-                        Pedido.Add(platoIntroducido); // Añadimos el plato a la lista si existe en el menu
+                 
+                        if (MenuFull.TryGetValue(platoIntroducido, out precioPlato))
+                        {
+                            Pedido.Add(platoIntroducido); // Añadimos el plato a la lista si existe en el menu
+                        }
+                        else
+                        {
+                            throw new DishIsNotInTheList("El Plato no existe en el menu.");
+                        }
                     }
-                    else
+                    catch(DishIsNotInTheList e)
                     {
-                        throw new ArgumentException("El Plato no existe en el menu.", platoIntroducido);
+                        Console.WriteLine("La excepción || {0} || acaba de saltar. ", e.Message);
                     }
 
 
-                    
-
-                    Console.WriteLine("Quiere seguir pidiendo? 1:Si / 0:No");
-                    sigaPidiendo = Convert.ToInt32(Console.ReadLine());
-
-                    if (sigaPidiendo != 1 && sigaPidiendo != 0)
+                    try
                     {
-                        throw new OptionInsertedIncorrect("The option is incorrect");
+                        Console.WriteLine("Quiere seguir pidiendo? 1:Si / 0:No");
+                        sigaPidiendo = Convert.ToInt32(Console.ReadLine());
+
+                        if (sigaPidiendo != 1 && sigaPidiendo != 0)
+                        {
+                            throw new OptionInsertedIncorrect("The option is incorrect");
+                        }
+                    }
+                    catch(OptionInsertedIncorrect e)
+                    {
+                        Console.WriteLine("La excepción || {0} || acaba de saltar. ", e.Message);
                     }
 
                     if (sigaPidiendo == 1)
@@ -134,18 +147,27 @@ namespace M4Restaurant
         {
             int tmpResult = 0;
 
-            foreach(string values in Pedido)
+            try
             {
-               if (MenuFull.TryGetValue(values, out tmpResult))
+
+                foreach (string values in Pedido)
                 {
-                    totalPedido += tmpResult; // Sumamos el precio del plato al total de la cuenta.
+                    if (MenuFull.TryGetValue(values, out tmpResult))
+                    {
+                        totalPedido += tmpResult; // Sumamos el precio del plato al total de la cuenta.
+                    }
+                    else
+                    {
+                        throw new DishIsNotInTheList("El plato del pedido no existe en el menu.");
+                    }
+
                 }
-               else
-                {
-                    Console.WriteLine("El Plato {0} no existe en el menu.", values);
-                }
-            
             }
+            catch(DishIsNotInTheList e)
+            {
+                Console.WriteLine("La excepción || {0} || acaba de saltar. ", e.Message);
+            }
+
 
             MostrarComoTieneQuePagar();
         }

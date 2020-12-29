@@ -20,6 +20,28 @@ namespace M4Restaurant
             {
             }
       
+
+
+         }
+
+    public class DishIsNotInTheList : Exception
+    {
+        public DishIsNotInTheList()
+        {
+        }
+
+        public DishIsNotInTheList(string message)
+            : base(message)
+        {
+        }
+
+        public DishIsNotInTheList(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+
+
+
     }
 
 }
