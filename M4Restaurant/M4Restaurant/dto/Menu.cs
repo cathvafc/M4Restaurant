@@ -79,16 +79,35 @@ namespace M4Restaurant
 
             int sigaPidiendo = 1;
             int mostrarMenu = 0;
+            string platoIntroducido = "";
+
             try
             {
                 while (sigaPidiendo == 1)
                 {
                     Console.WriteLine("Qué plato desea?");
 
-                    Pedido.Add(Console.ReadLine());
+                    platoIntroducido = Console.ReadLine();                
+
+                    if (platos.Equals(platoIntroducido))
+                    {
+                        Pedido.Add(platoIntroducido); // Sumamos el precio del plato al total de la cuenta.
+                    }
+                    else
+                    {
+                        throw new ArgumentException("El Plato {0} no existe en el menu.", platoIntroducido);
+                    }
+
+
+                    
 
                     Console.WriteLine("Quiere seguir pidiendo? 1:Si / 0:No");
                     sigaPidiendo = Convert.ToInt32(Console.ReadLine());
+
+                    if (sigaPidiendo != 1 && sigaPidiendo != 0)
+                    {
+                        throw new OptionInsertedIncorrect("The option is incorrect");
+                    }
 
                     if (sigaPidiendo == 1)
                     {
