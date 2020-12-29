@@ -128,6 +128,11 @@ namespace M4Restaurant
                         Console.WriteLine("Quiere ver el menu otra vez? 1:Si / 0:No");
                         mostrarMenu = Convert.ToInt32(Console.ReadLine());
 
+                        if (mostrarMenu != 1 && mostrarMenu != 0)
+                        {
+                            throw new OptionInsertedIncorrect("The option is incorrect");
+                        }
+
                         if (mostrarMenu == 1)
                         {
                             ShowMenu();
