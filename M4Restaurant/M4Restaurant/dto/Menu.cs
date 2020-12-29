@@ -90,13 +90,17 @@ namespace M4Restaurant
                     Console.WriteLine("Quiere seguir pidiendo? 1:Si / 0:No");
                     sigaPidiendo = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Quiere ver el menu otra vez? 1:Si / 0:No");
-                    mostrarMenu = Convert.ToInt32(Console.ReadLine());
-
-                    if (mostrarMenu == 1)
+                    if (sigaPidiendo == 1)
                     {
-                        ShowMenu();
+                        Console.WriteLine("Quiere ver el menu otra vez? 1:Si / 0:No");
+                        mostrarMenu = Convert.ToInt32(Console.ReadLine());
+
+                        if (mostrarMenu == 1)
+                        {
+                            ShowMenu();
+                        }
                     }
+                 
                 }
             }
             catch(FormatException e)
@@ -149,7 +153,7 @@ namespace M4Restaurant
             tmpTotal %= 2;
             unEuro = tmpTotal;
 
-            Console.WriteLine("La cuenta de {0} euros la tiene que pagar en la siguiente combinación de billetes: ");
+            Console.WriteLine("La cuenta de {0} euros la tiene que pagar en la siguiente combinación de billetes: ", totalPedido);
 
 
             if (quinientosEuros != 0)
