@@ -80,6 +80,7 @@ namespace M4Restaurant
             int sigaPidiendo = 1;
             int mostrarMenu = 0;
             string platoIntroducido = "";
+            int precioPlato = 0;
 
             try
             {
@@ -87,15 +88,15 @@ namespace M4Restaurant
                 {
                     Console.WriteLine("Qué plato desea?");
 
-                    platoIntroducido = Console.ReadLine();                
+                    platoIntroducido = Console.ReadLine();
 
-                    if (platos.Equals(platoIntroducido))
+                    if (MenuFull.TryGetValue(platoIntroducido, out precioPlato))
                     {
-                        Pedido.Add(platoIntroducido); // Sumamos el precio del plato al total de la cuenta.
+                        Pedido.Add(platoIntroducido); // Añadimos el plato a la lista si existe en el menu
                     }
                     else
                     {
-                        throw new ArgumentException("El Plato {0} no existe en el menu.", platoIntroducido);
+                        throw new ArgumentException("El Plato no existe en el menu.", platoIntroducido);
                     }
 
 
@@ -177,39 +178,39 @@ namespace M4Restaurant
 
             if (quinientosEuros != 0)
             {
-                Console.WriteLine("{0} billetes de quinientos euros", quinientosEuros);
+                Console.WriteLine("{0} billete/s de quinientos euros", quinientosEuros);
             }
             if (dosCientosEuros != 0)
             {
-                Console.WriteLine("{0} billetes de doscientos euros", dosCientosEuros);
+                Console.WriteLine("{0} billete/s de doscientos euros", dosCientosEuros);
             }
             if (cienEuros != 0)
             {
-                Console.WriteLine("{0} billetes de cien euros", cienEuros);
+                Console.WriteLine("{0} billete/s de cien euros", cienEuros);
             }
             if (cincuentaEuros != 0)
             {
-                Console.WriteLine("{0} billetes de cincuenta euros", cincuentaEuros);
+                Console.WriteLine("{0} billete/s de cincuenta euros", cincuentaEuros);
             }
             if (veinteEuros != 0)
             {
-                Console.WriteLine("{0} billetes de veinte euros", veinteEuros);
+                Console.WriteLine("{0} billete/s de veinte euros", veinteEuros);
             }
             if (diezEuros != 0)
             {
-                Console.WriteLine("{0} billetes de diez euros", diezEuros);
+                Console.WriteLine("{0} billete/s de diez euros", diezEuros);
             }
             if (cincoEuros != 0)
             {
-                Console.WriteLine("{0} billetes de cinco euros", cincoEuros);
+                Console.WriteLine("{0} billete/s de cinco euros", cincoEuros);
             }
             if (dosEuros != 0)
             {
-                Console.WriteLine("{0} monedas de 2 euros", dosEuros);
+                Console.WriteLine("{0} moneda/s de 2 euros", dosEuros);
             }
             if (unEuro != 0)
             {
-                Console.WriteLine("{0} moendas de 1 euro", unEuro);
+                Console.WriteLine("{0} moneda/s de 1 euro", unEuro);
             }
 
             Console.WriteLine("Muchas gracias por venir.");
